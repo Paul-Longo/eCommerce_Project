@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "58c6c1ba-75d9-420d-827d-76fa8980bfa3",
+		"name": "ASP_NET_eCommerce_Web_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register_User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"David\",\r\n    \"lastname\": \"Lagrange\",\r\n    \"username\": \"dlagrange\",\r\n    \"password\": \"somePass12\",\r\n    \"email\": \"david@devcodecamp.com\",\r\n    \"phonenumber\": \"555-555-5555\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44394/api/authentication",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44394",
+							"path": [
+								"api",
+								"authentication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login_User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"dlagrange\",\r\n    \"password\": \"somePass12\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44394/api/authentication/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44394",
+							"path": [
+								"api",
+								"authentication",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Examples",
+			"item": [
+				{
+					"name": "Get_Current_User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44394/api/examples/user",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44394",
+							"path": [
+								"api",
+								"examples",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
