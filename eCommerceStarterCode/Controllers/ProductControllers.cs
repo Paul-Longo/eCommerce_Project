@@ -11,8 +11,7 @@ using System.Threading.Tasks;
 
 namespace eCommerceStarterCode.Controllers
 {
-
-    [Route("api/product")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -22,6 +21,14 @@ namespace eCommerceStarterCode.Controllers
             _context = context;
         }
 
+        [HttpGet]
+        public IActionResult GetAllProducts()
+        {
+            var products = _context.Products;
+            return Ok(products);
+        }
+
+        // <baseurl>/api/examples/user
         [HttpGet("{id}")]
         public IActionResult GetSelectedProduct(int id)
         {
@@ -50,7 +57,12 @@ namespace eCommerceStarterCode.Controllers
             {
                 return NotFound();
             }
-            productToChange = value;
+            productToChange.CategoryId = value.CategoryId;
+            productToChange.Description = value.Description;
+            productToChange.Name = value.Name;
+            productToChange.Price = value.Price;
+            productToChange.UserId = value.UserId;
+            _context.Update(productToChange);
             _context.SaveChanges();
             return Ok(value);
         }
