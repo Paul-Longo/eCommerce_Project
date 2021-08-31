@@ -1,10 +1,12 @@
 using eCommerceStarterCode.Data;
 using eCommerceStarterCode.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace eCommerceStarterCode.Controllers
@@ -20,15 +22,8 @@ namespace eCommerceStarterCode.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        public IActionResult GetAllProducts()
-        {
-            var product = _context.Products;
-            return Ok(product);
-        }
-        
         [HttpGet("{id}")]
-        public IActionResult GetMerchById(int id)
+        public IActionResult GetSelectedProduct(int id)
         {
             var product = _context.Products.Find(id);
             if (product == null)
@@ -37,24 +32,48 @@ namespace eCommerceStarterCode.Controllers
             }
             return Ok(product);
         }
-        
+
+        [HttpGet("category/{categoryId}")]
+        public IActionResult GetProductsByCategory(int categoryId)
+        {
+            var categoryToFind = _context.Categories.Find(categoryId);
+            var products = _context.Products.Where(x => x.Category == categoryToFind);
+
+            return Ok(products);
+        }
+
+        [HttpPut]
+        public IActionResult UpdateProduct([FromBody] Product value)
+        {
+            Product productToChange = _context.Products.Find(value.ProductId);
+            if (productToChange != null)
+            {
+                return NotFound();
+            }
+            productToChange = value;
+            _context.SaveChanges();
+            return Ok(value);
+        }
+
         [HttpPost]
-        public IActionResult Post([FromBody] Product value)
+        public IActionResult NewProduct([FromBody] Product value)
         {
             _context.Products.Add(value);
             _context.SaveChanges();
             return StatusCode(201, value);
         }
-        
 
-        
         [HttpDelete("{id}")]
-        public IActionResult Remove(int id)
+        public IActionResult DeleteProduct(int id)
         {
-            var product = _context.Products.Find(id);
-            _context.Products.Remove(product);
+            var productToDelete = _context.Products.Find(id);
+            if (productToDelete == null)
+            {
+                return NotFound();
+            }
+            _context.Products.Remove(productToDelete);
             _context.SaveChanges();
-            return Ok(product);
+            return Ok();
         }
     }
 }
