@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using eCommerceStarterCode.Data;
 
 namespace eCommerceStarterCode.Controllers
 {
@@ -11,13 +12,13 @@ namespace eCommerceStarterCode.Controllers
     [ApiController]
     public class ShoppingCartController : ControllerBase
     {
-        private ApplicationContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public ShoppingCartController(ApplicationContext context)
+        public ShoppingCartController(ApplicationDbContext context)
         {
             _context = context;
         }
-    
+
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -35,7 +36,7 @@ namespace eCommerceStarterCode.Controllers
             return Ok(shoppingCart);
         }
         [HttpPost]
-        public IActionResult Post([FromBody] ShoppingCart value)
+        public IActionResult Post([FromBody]ShoppingCarts value)
         {
             _context.ShoppingCarts.Add(value);
             _context.SaveChanges();
