@@ -19,15 +19,14 @@ namespace eCommerceStarterCode.Controllers
         {
             _context = context;
         }
-        //Start requests here.
-        // get all merch 
+
         [HttpGet]
         public IActionResult GetAllProducts()
         {
             var product = _context.Products;
             return Ok(product);
         }
-        // get merch by id TESTED
+        
         [HttpGet("{id}")]
         public IActionResult GetMerchById(int id)
         {
@@ -38,7 +37,7 @@ namespace eCommerceStarterCode.Controllers
             }
             return Ok(product);
         }
-        // post or "add" new merch to database TESTED
+        
         [HttpPost]
         public IActionResult Post([FromBody] Product value)
         {
@@ -46,9 +45,9 @@ namespace eCommerceStarterCode.Controllers
             _context.SaveChanges();
             return StatusCode(201, value);
         }
-        // update merch by id TESTED
+        
 
-        // delete merch by id TESTED 
+        
         [HttpDelete("{id}")]
         public IActionResult Remove(int id)
         {
