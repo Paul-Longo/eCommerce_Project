@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using eCommerceStarterCode.Data;
+using eCommerceStarterCode.Models;
 
 namespace eCommerceStarterCode.Controllers
 {
@@ -18,12 +19,11 @@ namespace eCommerceStarterCode.Controllers
         {
             _context = context;
         }
-
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAllShoppingCarts()
         {
-            var shoppingCart = _context.ShoppingCarts;
-            return Ok(shoppingCart);
+            var shoppingCarts = _context.ShoppingCarts;
+            return Ok(shoppingCarts);
         }
         [HttpGet("{id}")]
         public IActionResult GetShoppingCartById(int id)
@@ -36,7 +36,7 @@ namespace eCommerceStarterCode.Controllers
             return Ok(shoppingCart);
         }
         [HttpPost]
-        public IActionResult Post([FromBody]ShoppingCarts value)
+        public IActionResult Post([FromBody] ShoppingCart value)
         {
             _context.ShoppingCarts.Add(value);
             _context.SaveChanges();
@@ -44,12 +44,16 @@ namespace eCommerceStarterCode.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Remove(int id)
+        public IActionResult DeleteShoppingCart(int id)
         {
-            var shoppingCart = _context.ShoppingCarts.Find(id);
-            _context.ShoppingCarts.Remove(shoppingCart);
+            var shoppingcartToDelete = _context.ShoppingCarts.Find(id);
+            if (shoppingcartToDelete == null)
+            {
+                return NotFound();
+            }
+            _context.ShoppingCarts.Remove(shoppingcartToDelete);
             _context.SaveChanges();
-            return Ok(shoppingCart);
+            return Ok();
         }
     }
 }

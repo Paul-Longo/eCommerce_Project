@@ -58,10 +58,10 @@ namespace eCommerceStarterCode.Controllers
                 return NotFound();
             }
             productToChange.CategoryId = value.CategoryId;
-            productToChange.Description = value.Description;
-            productToChange.Name = value.Name;
-            productToChange.Price = value.Price;
-            productToChange.UserId = value.UserId;
+            productToChange.ProductDescription = value.ProductDescription;
+            productToChange.ProductName = value.ProductName;
+            productToChange.ProductPrice = value.ProductPrice;
+           
             _context.Update(productToChange);
             _context.SaveChanges();
             return Ok(value);
