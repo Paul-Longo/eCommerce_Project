@@ -8,18 +8,23 @@ namespace eCommerceStarterCode.Data
     public class ApplicationDbContext : IdentityDbContext<User>
     {
         public ApplicationDbContext(DbContextOptions options)
-            :base(options)
+            : base(options)
         {
 
         }
 
-        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ShoppingCart> Shoppingcarts { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<ProductOrder> ProductOrders { get; set; }
+     
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new RolesConfiguration());
         }
-
     }
 }
