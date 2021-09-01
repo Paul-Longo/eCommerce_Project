@@ -36,7 +36,7 @@ namespace eCommerceStarterCode.Controllers
             return Ok(shoppingCart);
         }
         [HttpPost]
-        public IActionResult Post([FromBody]ShoppingCarts value)
+        public IActionResult Post([FromBody] ShoppingCart value)
         {
             _context.ShoppingCarts.Add(value);
             _context.SaveChanges();

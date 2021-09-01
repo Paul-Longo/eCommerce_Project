@@ -9,9 +9,9 @@ namespace eCommerceStarterCode.Models
 {
     public class ShoppingCart
     {
-        public int ShoppingCartId { get; set; }
-        public string Product { get; set; }
-        public string Description { get; set; }
+        public int UserId { get; set; }
+        public string ProductId { get; set; }
+        public string Quantity { get; set; }
 
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
