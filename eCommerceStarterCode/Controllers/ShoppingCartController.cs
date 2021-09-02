@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using eCommerceStarterCode.Data;
+using eCommerceStarterCode.Models;
 
 namespace eCommerceStarterCode.Controllers
 {
@@ -36,7 +37,7 @@ namespace eCommerceStarterCode.Controllers
             return Ok(shoppingCart);
         }
         [HttpPost]
-        public IActionResult Post([FromBody]ShoppingCarts value)
+        public IActionResult Post([FromBody]ShoppingCart value)
         {
             _context.ShoppingCarts.Add(value);
             _context.SaveChanges();
