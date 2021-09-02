@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using eCommerceStarterCode.Data;
+using eCommerceStarterCode.Models;
 
 namespace eCommerceStarterCode.Controllers
 {
