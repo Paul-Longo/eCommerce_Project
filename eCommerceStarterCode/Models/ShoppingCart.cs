@@ -13,8 +13,8 @@ namespace eCommerceStarterCode.Models
         public string Product { get; set; }
         public string Description { get; set; }
 
-        [ForeignKey("IdentityUser")]
-        public string IdentityUserId { get; set; }
-        public IdentityUser IdentityUser { get; set; }
+        [ForeignKey("User")]
+        public string UserId { get; set; }
+        public User User { get; set; }
     }
 }

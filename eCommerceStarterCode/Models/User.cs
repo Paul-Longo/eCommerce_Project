@@ -10,7 +10,6 @@ namespace eCommerceStarterCode.Models
 
         {
             ShoppingCarts = new HashSet<ShoppingCart>();
-            Reviews = new HashSet<Review>();
 
 
 
@@ -24,6 +23,5 @@ namespace eCommerceStarterCode.Models
        
 
         public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
-        public virtual ICollection<Review> Reviews { get; set; }
     }
 }
