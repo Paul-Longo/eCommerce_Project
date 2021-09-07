@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
 
 namespace eCommerceStarterCode.Models
 {
-    public class ShoppingCart
+    public class Review
     {
-        public int ShoppingCartId { get; set; }
-        public string Product { get; set; }
-        public string Description { get; set; }
+        public int ReviewId { get; set; }
+        public string Body { get; set; }
+        public int Rating { get; set; }
+
+        [ForeignKey("Product")]
+        public int ProductId { get; set; }
+        public Product Product { get; set; }
 
         [ForeignKey("User")]
         public string UserId { get; set; }
